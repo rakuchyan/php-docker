@@ -5,8 +5,9 @@ MAINTAINER leli<li.le@ifchange.com>
 RUN set -ex; \
     \
     apt-get update; \
-    apt-get install --assume-yes \
-        apt-utils \
+    apt-get install -y --allow-unauthenticated \
+        autoconf \
+        gcc \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
@@ -29,10 +30,7 @@ RUN set -ex; \
     apt-get autoclean;\
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ;\
     \
-    docker-php-ext-configure gd \
-        --with-png-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ \
-        --with-freetype-dir=/usr/include/ \
+    docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ --with-freetype-dir=/usr/include/ \
     docker-php-ext-install \
         gd \
         iconv \
@@ -64,6 +62,7 @@ RUN set -ex; \
         msgpack-2.0.2 \
         mcrypt-1.0.1 \
         mongodb \
+        swoole \
     ; \
     docker-php-ext-enable --ini-name pecl.ini \
         memcache \
@@ -72,9 +71,11 @@ RUN set -ex; \
         msgpack \
         mcrypt \
         mongodb \
+        swoole \
     ; \
     pecl clear-cache;\
-    rm rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*;\
+    rm -rf /var/cache/apk/*
 
 WORKDIR /var/www
 
