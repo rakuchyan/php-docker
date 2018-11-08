@@ -3,21 +3,21 @@ FROM php:7.2-fpm
 MAINTAINER leli<li.le@ifchange.com>
 
 ENV PHPIZE_DEPS \
-		autoconf \
-		file \
-		g++ \
-		gcc \
-		make \
-		pkg-config \
+	autoconf \
+	file \
+	g++ \
+	gcc \
+	make \
+	pkg-config \
         wget \
         git \
         cron \
         vim
 
 RUN apt-get update && apt-get install -y \
-		$PHPIZE_DEPS \
+	$PHPIZE_DEPS \
 	--no-install-recommends && \
-    rm -r /var/lib/apt/lists/*
+    	rm -r /var/lib/apt/lists/*
 
 RUN set -ex; \
     \
