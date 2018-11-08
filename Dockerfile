@@ -10,7 +10,8 @@ ENV PHPIZE_DEPS \
 		make \
 		pkg-config \
         wget \
-        git
+        git \
+        cron
 
 RUN apt-get update && apt-get install -y \
 		$PHPIZE_DEPS \
