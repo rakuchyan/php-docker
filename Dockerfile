@@ -11,7 +11,8 @@ ENV PHPIZE_DEPS \
 		pkg-config \
         wget \
         git \
-        cron
+        cron \
+        vim
 
 RUN apt-get update && apt-get install -y \
 		$PHPIZE_DEPS \
