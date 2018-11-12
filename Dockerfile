@@ -11,8 +11,19 @@ ENV PHPIZE_DEPS \
 	pkg-config \
         wget \
         git \
+        vim \
+        yum \
+        # crontab
         cron \
-        vim
+        # netstat ifconfig
+        net-tools \
+        # ping
+        iputils-ping \
+        # ps
+        procps \
+        # telnet
+        telnet \
+        htop
 
 RUN apt-get update && apt-get install -y \
 	$PHPIZE_DEPS \
@@ -82,8 +93,11 @@ RUN docker-php-ext-enable gearman.so && \
     mkdir -p ${HOME}/php-default-conf && \
     cp -R /usr/local/etc/* ${HOME}/php-default-conf
 
-WORKDIR /var/www/html
+RUN mkdir -p /opt/log && chmod 777 /opt/log
+# chown -R nobody:nobody /opt/log
 
-EXPOSE 9000
+WORKDIR /opt/wwwroot
+
+# EXPOSE 9000
 
 CMD ["php-fpm"]
