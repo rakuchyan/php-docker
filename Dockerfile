@@ -1,6 +1,6 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 
-MAINTAINER leli<li.le@ifchange.com>
+MAINTAINER leli<rakuchyan.le@gmail.com>
 
 ENV PHPIZE_DEPS \
 	autoconf \
